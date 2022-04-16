@@ -4,7 +4,7 @@ import "./Track.css";
 export class Track extends React.Component {
     renderAction() {
         let buttonValue;
-        if(isRemoval == true) {
+        if (isRemoval == true) {
             buttonValue = "-";
         } else {
             buttonValue = "+";
@@ -13,14 +13,14 @@ export class Track extends React.Component {
     }
 
     render() {
-        return 
-            (<div class="Track">
+        return (
+            <div class="Track">
                 <div className="Track-information">
-                     <h3>"track name will go here"</h3>
-                     <p>"track artist will go here, track album will go here"</p>
+                    <h3>"track name will go here"</h3>
+                    <p>"track artist will go here, track album will go here"</p>
                 </div>
                 {this.renderAction}
             </div>)
-        
+
     }
 }
