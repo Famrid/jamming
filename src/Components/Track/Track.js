@@ -2,9 +2,12 @@ import React from "react";
 import "./Track.css";
 
 export class Track extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     renderAction() {
         let buttonValue;
-        if (isRemoval == true) {
+        if (this.props.isRemoval === true) {
             buttonValue = "-";
         } else {
             buttonValue = "+";
@@ -19,7 +22,7 @@ export class Track extends React.Component {
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist}, {this.props.track.album}</p>
                 </div>
-                {this.renderAction}
+                {this.renderAction()}
             </div>)
 
     }
