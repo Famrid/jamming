@@ -5,14 +5,29 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { SearchResults } from "../SearchResults/SearchResults";
 import { Playlist } from "../Playlist/Playlist";
 
-class App extends React.Component() {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchResults: [],
-      playlistName: "test",
+      playlistName: "",
       playlistTracks: []
     }
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+  }
+
+  addTrack(track) {
+    if(this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+      return;
+    } else {
+      this.setState({playlistTracks: [...this.state.playlistTracks, track]});
+    }
+  }
+
+  removeTrack(track) {
+    const newPlaylistTracksState = this.state.playlistTracks.filter(savedTrack => savedTrack.id !== track.id);
+    this.setState({playlistTracks: newPlaylistTracksState}); 
   }
   
   render() {
@@ -20,16 +35,20 @@ class App extends React.Component() {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <h1>Hello World</h1>
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
-            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
+            <SearchResults 
+              onAdd={this.addTrack} 
+              searchResults={this.state.searchResults} />
+            <Playlist 
+              isRemoval={false}
+              onRemove={this.removeTrack} 
+              playlistName={this.state.playlistName} 
+              playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>
     );
   }
-}
+};
 
-export default App;

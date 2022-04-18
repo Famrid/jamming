@@ -7,7 +7,9 @@ export class TrackList extends React.Component {
         const trackArray = this.props.tracks;
         trackArray.map(tracks => {
             return(
-                <Track 
+                <Track
+                    onAdd={this.props.onAdd}
+                    onRemove={this.props.onRemove} 
                     track={tracks} 
                     key={tracks.id} />
             )
@@ -17,7 +19,7 @@ export class TrackList extends React.Component {
     render() {
         return (
             <div className="TrackList">
-                {this.mappingTracks}
+                {this.mappingTracks()}
             </div>
         )
     }
